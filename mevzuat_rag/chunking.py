@@ -6,15 +6,29 @@ from pathlib import Path
 
 from pypdf import PageObject, PdfReader
 
-from mevzuat_rag.download import PDF_PATH, SOURCE_URL, download_law
+from mevzuat_rag.download import SOURCE_URLS, download_law
 
 LAW_NO = "4857"
+SEVERANCE_LAW_NO = "1475"
 LAW_NAME = "İş Kanunu"
-CHUNKS_PATH = Path("data/processed/4857.jsonl")
+CHUNKS_PATH = Path("data/processed/chunks.jsonl")
 EXPECTED_COUNTS = {"madde": 122, "ek": 3, "gecici": 12}
 
-# The amendment tables after the last article repeat "Madde N" and must not be parsed.
-LAW_END_MARKER = "4857 SAYILI KANUNA EK VE DEĞİŞİKLİK GETİREN MEVZUATIN"
+# Text after these markers is amendment tables, which repeat "Madde N".
+LAW_END_MARKERS = {
+    LAW_NO: "4857 SAYILI KANUNA EK VE DEĞİŞİKLİK GETİREN MEVZUATIN",
+    SEVERANCE_LAW_NO: "1475 SAYILI ANA KANUNA İŞLENEMEYEN HÜKÜMLER",
+}
+
+# Article 14 of Law 1475 cites articles of that law which no longer exist, while
+# Law 4857 has different articles with the same numbers. Temporary Article 1 of
+# Law 4857 states which articles replace them.
+SEVERANCE_NOTE = (
+    "4857 sayılı Kanunun Geçici 1 inci maddesine göre, bu maddenin birinci fıkrasının "
+    "1 inci ve 2 nci bendi ile onbirinci fıkrasında 1475 sayılı Kanunun 16, 17 ve 26 ncı "
+    "maddelerine yapılan atıflar, 4857 sayılı Kanunun 24, 25 ve 32 nci maddelerine "
+    "yapılmış sayılır."
+)
 
 # A dash or "(" must follow the number: it separates real headings from wrapped
 # cross-references. Article 87 has no dash: "Madde 87 (Mülga: ...)".
@@ -41,6 +55,7 @@ class Chunk:
     is_repealed: bool
     text: str
     source_url: str
+    context_note: str = ""
 
 
 def extract_body_text(page: PageObject) -> str:
@@ -93,7 +108,8 @@ def find_title(lines: list[str], heading_index: int) -> tuple[int, str]:
     return start, collapse(" ".join(lines[start:end]))
 
 
-def build_chunks(lines: list[str], source_url: str = SOURCE_URL) -> list[Chunk]:
+def build_chunks(lines: list[str]) -> list[Chunk]:
+    source_url = SOURCE_URLS[LAW_NO]
     lines = list(lines)
     sections = extract_sections(lines)
     headings = [(i, m) for i, line in enumerate(lines) if (m := HEADING_RE.match(line))]
@@ -129,21 +145,45 @@ def build_chunks(lines: list[str], source_url: str = SOURCE_URL) -> list[Chunk]:
     return chunks
 
 
-def read_body_lines(pdf_path: Path) -> list[str]:
-    pages = [extract_body_text(page) for page in PdfReader(pdf_path).pages]
+def build_severance_chunk(lines: list[str]) -> Chunk:
+    """Article 14 is the only provision of Law 1475 that is still in force."""
+    headings = [(i, m) for i, line in enumerate(lines) if (m := HEADING_RE.match(line))]
+    start_position = next(p for p, (_, m) in enumerate(headings) if m.group("no") == "14")
+    start, match = headings[start_position]
+    end = headings[start_position + 1][0]
+    text = collapse(" ".join([match.group("rest"), *lines[start + 1 : end]]))
+    return Chunk(
+        id=f"{SEVERANCE_LAW_NO}-14",
+        law_no=SEVERANCE_LAW_NO,
+        article_type="madde",
+        article_no=14,
+        title="Kıdem tazminatı",
+        section="",
+        citation=f"{SEVERANCE_LAW_NO} sayılı {LAW_NAME}, Madde 14",
+        is_repealed=False,
+        text=text,
+        source_url=SOURCE_URLS[SEVERANCE_LAW_NO],
+        context_note=SEVERANCE_NOTE,
+    )
+
+
+def read_body_lines(law_no: str) -> list[str]:
+    pages = [extract_body_text(page) for page in PdfReader(download_law(law_no)).pages]
     lines = "\n".join(pages).splitlines()
     for index, line in enumerate(lines):
-        if LAW_END_MARKER in line:
+        if LAW_END_MARKERS[law_no] in line:
             return lines[:index]
     raise ValueError("Law end marker not found; the PDF layout may have changed")
 
 
-def validate(chunks: list[Chunk]) -> None:
+def validate(chunks: list[Chunk], severance: Chunk) -> None:
     """Fail loudly: a silently lost article would become a wrong answer later."""
     for kind, expected in EXPECTED_COUNTS.items():
         numbers = [c.article_no for c in chunks if c.article_type == kind]
         if numbers != list(range(1, expected + 1)):
             raise ValueError(f"{kind}: expected 1..{expected}, got {numbers}")
+    if "30 günlük" not in severance.text or not severance.text.endswith("kanunla düzenlenir."):
+        raise ValueError("Article 14 of Law 1475 was not extracted completely")
 
 
 def write_chunks(chunks: list[Chunk], target: Path = CHUNKS_PATH) -> None:
@@ -154,11 +194,12 @@ def write_chunks(chunks: list[Chunk], target: Path = CHUNKS_PATH) -> None:
 
 
 def main() -> None:
-    download_law()
-    chunks = build_chunks(read_body_lines(PDF_PATH))
-    validate(chunks)
-    write_chunks(chunks)
-    print(f"{len(chunks)} chunks written to {CHUNKS_PATH}")
+    chunks = build_chunks(read_body_lines(LAW_NO))
+    severance = build_severance_chunk(read_body_lines(SEVERANCE_LAW_NO))
+    validate(chunks, severance)
+    all_chunks = [*chunks, severance]
+    write_chunks(all_chunks)
+    print(f"{len(all_chunks)} chunks written to {CHUNKS_PATH}")
 
 
 if __name__ == "__main__":

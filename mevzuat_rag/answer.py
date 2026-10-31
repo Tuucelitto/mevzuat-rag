@@ -78,9 +78,10 @@ class Answer:
 
 def format_article(chunk: dict) -> str:
     status = " [REPEALED]" if chunk["is_repealed"] else ""
+    note = f"\n<note>{chunk['context_note']}</note>" if chunk.get("context_note") else ""
     return (
         f"<article id=\"{chunk['id']}\" citation=\"{chunk['citation']}\" "
-        f"title=\"{chunk['title']}\"{status}>\n{chunk['text']}\n</article>"
+        f"title=\"{chunk['title']}\"{status}>\n{chunk['text']}{note}\n</article>"
     )
 
 
