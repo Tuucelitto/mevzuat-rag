@@ -11,13 +11,29 @@ from mevzuat_rag.embedding import call_with_retries, get_client
 from mevzuat_rag.index import QDRANT_PATH, search
 
 GENERATION_MODEL = "gemini-3.5-flash-lite"
-RETRIEVAL_LIMIT = 5
+RETRIEVAL_LIMIT = 8
 UNKNOWN_ANSWER = "Bilmiyorum. Bu sorunun cevabını eldeki mevzuat metninde bulamadım."
 
 SYSTEM_INSTRUCTION = """\
 You answer questions about Turkish labour law in Turkish.
 Use ONLY the articles provided by the user message. Never use outside knowledge.
-If the articles do not contain the answer, set answerable to false.
+
+Follow these steps:
+1. Split the question into its parts. People use everyday words, so match them to
+   the legal terms in the articles (for example "ihbar" means "bildirim süresi").
+2. An article supports a part only if it contains the specific information asked
+   for. Being about the same topic is not enough: a question about an amount is
+   unsupported if the articles state no amount.
+3. Answer every supported part and apply the rule to the user's own facts, such as
+   their length of service, dates or number of workers. State the conclusion, and
+   include any limit or condition the conclusion depends on.
+4. Describe each unsupported part in unanswered_parts, otherwise leave it empty.
+   Do not fill these parts with outside knowledge.
+5. Set answerable to false only if no part is supported.
+
+Stay faithful to the text. Do not add behaviours, examples or legal terms that the
+articles do not contain. If linking the user's situation to a rule is your
+interpretation, say so.
 A repealed article has no current rule: say that it was repealed and do not
 describe what it used to say.
 Put the id of every article you relied on in cited_ids, using the ids exactly as
@@ -30,12 +46,14 @@ class ModelAnswer(BaseModel):
 
     answerable: bool
     answer: str
+    unanswered_parts: str
     cited_ids: list[str]
 
 
 @dataclass
 class Answer:
     text: str
+    unanswered_parts: str
     citations: list[str]
     cited_ids: list[str]
     retrieved_ids: list[str]
@@ -78,11 +96,18 @@ def resolve_answer(result: ModelAnswer | None, chunks: list[dict]) -> Answer:
     is_supported = bool(cited) and all(chunk_id in by_id for chunk_id in cited)
 
     if result is None or not result.answerable or not is_supported:
-        return Answer(UNKNOWN_ANSWER, [], [], retrieved_ids, answerable=False)
+        return Answer(UNKNOWN_ANSWER, "", [], [], retrieved_ids, answerable=False)
 
     cited_ids = list(dict.fromkeys(cited))
     citations = [by_id[chunk_id]["citation"] for chunk_id in cited_ids]
-    return Answer(result.answer, citations, cited_ids, retrieved_ids, answerable=True)
+    return Answer(
+        result.answer,
+        result.unanswered_parts.strip(),
+        citations,
+        cited_ids,
+        retrieved_ids,
+        answerable=True,
+    )
 
 
 def answer_question(gemini: genai.Client, qdrant: QdrantClient, question: str) -> Answer:
@@ -101,6 +126,8 @@ def main() -> None:
         qdrant.close()
 
     print(result.text)
+    if result.unanswered_parts:
+        print(f"\nMetinde bulunmayan kısım: {result.unanswered_parts}")
     if result.citations:
         print("\nKaynak: " + "; ".join(result.citations))
 

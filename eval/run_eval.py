@@ -46,10 +46,13 @@ def reciprocal_rank(expected: list[str], retrieved: list[str]) -> float:
     return 0.0
 
 
-def facts_correct(must_include: list[list[str]], answer_text: str) -> bool:
-    """Every group needs one matching variant, e.g. "dört hafta" or "4 hafta"."""
+def facts_correct(
+    must_include: list[list[str]], must_not_include: list[str], answer_text: str
+) -> bool:
+    """Every group needs one match ("dört hafta" or "4 hafta"); no banned phrase may appear."""
     text = normalize(answer_text)
-    return all(any(normalize(variant) in text for variant in group) for group in must_include)
+    has_facts = all(any(normalize(variant) in text for variant in group) for group in must_include)
+    return has_facts and not any(normalize(phrase) in text for phrase in must_not_include)
 
 
 def score_question(row: dict, answer: Answer) -> dict:
@@ -63,6 +66,10 @@ def score_question(row: dict, answer: Answer) -> dict:
         "cited_ids": answer.cited_ids,
         "system_answered": answer.answerable,
         "answer": answer.text,
+        "unanswered_parts": answer.unanswered_parts,
+        # Filled in by a human: phrase checks cannot catch a distorted rule.
+        "manual_grade": None,
+        "manual_note": "",
     }
     if row["answerable"]:
         expected = row["expected_ids"]
@@ -70,7 +77,7 @@ def score_question(row: dict, answer: Answer) -> dict:
         record["reciprocal_rank"] = reciprocal_rank(expected, answer.retrieved_ids)
         record["citation_recall"] = recall(expected, answer.cited_ids)
         record["facts_correct"] = answer.answerable and facts_correct(
-            row["must_include"], answer.text
+            row["must_include"], row.get("must_not_include", []), answer.text
         )
     else:
         record["correctly_refused"] = not answer.answerable
@@ -106,6 +113,16 @@ def summarize(records: list[dict]) -> dict:
     }
 
 
+def review_summary(path: Path) -> dict:
+    """Count hand-written grades (correct, incomplete, wrong) in a result file."""
+    report = json.loads(path.read_text(encoding="utf-8"))
+    grades = [record["manual_grade"] for record in report["records"]]
+    return {
+        grade or "ungraded": grades.count(grade)
+        for grade in sorted(set(grades), key=lambda value: value or "")
+    }
+
+
 def git_state() -> dict:
     """Record the code version so a result can be traced back to what produced it."""
 
@@ -123,7 +140,11 @@ def main() -> None:
     parser.add_argument("--split", choices=["dev", "test"], default="dev")
     parser.add_argument("--final", action="store_true", help="unlock the test split")
     parser.add_argument("--label", default="baseline", help="name of the configuration")
+    parser.add_argument("--review", type=Path, help="print the manual grades of a result file")
     args = parser.parse_args()
+    if args.review:
+        print(json.dumps(review_summary(args.review), ensure_ascii=False, indent=2))
+        return
     if args.split == "test" and not args.final:
         parser.error("the test split is locked; pass --final only for the final measurement")
 
