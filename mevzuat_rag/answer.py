@@ -37,6 +37,7 @@ class ModelAnswer(BaseModel):
 class Answer:
     text: str
     citations: list[str]
+    cited_ids: list[str]
     retrieved_ids: list[str]
     answerable: bool
 
@@ -77,10 +78,11 @@ def resolve_answer(result: ModelAnswer | None, chunks: list[dict]) -> Answer:
     is_supported = bool(cited) and all(chunk_id in by_id for chunk_id in cited)
 
     if result is None or not result.answerable or not is_supported:
-        return Answer(UNKNOWN_ANSWER, [], retrieved_ids, answerable=False)
+        return Answer(UNKNOWN_ANSWER, [], [], retrieved_ids, answerable=False)
 
-    citations = [by_id[chunk_id]["citation"] for chunk_id in dict.fromkeys(cited)]
-    return Answer(result.answer, citations, retrieved_ids, answerable=True)
+    cited_ids = list(dict.fromkeys(cited))
+    citations = [by_id[chunk_id]["citation"] for chunk_id in cited_ids]
+    return Answer(result.answer, citations, cited_ids, retrieved_ids, answerable=True)
 
 
 def answer_question(gemini: genai.Client, qdrant: QdrantClient, question: str) -> Answer:
