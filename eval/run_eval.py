@@ -140,6 +140,7 @@ def main() -> None:
     parser.add_argument("--split", choices=["dev", "test"], default="dev")
     parser.add_argument("--final", action="store_true", help="unlock the test split")
     parser.add_argument("--label", default="baseline", help="name of the configuration")
+    parser.add_argument("--model", default=GENERATION_MODEL, help="Gemini model for answers")
     parser.add_argument("--review", type=Path, help="print the manual grades of a result file")
     args = parser.parse_args()
     if args.review:
@@ -154,7 +155,8 @@ def main() -> None:
     records = []
     try:
         for number, row in enumerate(questions, start=1):
-            records.append(score_question(row, answer_question(gemini, qdrant, row["question"])))
+            answer = answer_question(gemini, qdrant, row["question"], args.model)
+            records.append(score_question(row, answer))
             print(f"{number}/{len(questions)} {row['id']}", flush=True)
     finally:
         qdrant.close()
@@ -166,7 +168,7 @@ def main() -> None:
         "created_at": created_at.isoformat(timespec="seconds"),
         "config": {
             "embedding_model": EMBEDDING_MODEL,
-            "generation_model": GENERATION_MODEL,
+            "generation_model": args.model,
             "retrieval_limit": RETRIEVAL_LIMIT,
         },
         "git": git_state(),

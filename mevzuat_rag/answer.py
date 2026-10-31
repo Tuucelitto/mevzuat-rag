@@ -90,7 +90,7 @@ def build_prompt(question: str, chunks: list[dict]) -> str:
     return f"Articles:\n{articles}\n\nQuestion: {question}"
 
 
-def generate(gemini: genai.Client, prompt: str) -> ModelAnswer | None:
+def generate(gemini: genai.Client, prompt: str, model: str) -> ModelAnswer | None:
     config = types.GenerateContentConfig(
         system_instruction=SYSTEM_INSTRUCTION,
         temperature=0,
@@ -98,9 +98,7 @@ def generate(gemini: genai.Client, prompt: str) -> ModelAnswer | None:
         response_schema=ModelAnswer,
     )
     response = call_with_retries(
-        lambda: gemini.models.generate_content(
-            model=GENERATION_MODEL, contents=prompt, config=config
-        )
+        lambda: gemini.models.generate_content(model=model, contents=prompt, config=config)
     )
     return response.parsed
 
@@ -127,9 +125,14 @@ def resolve_answer(result: ModelAnswer | None, chunks: list[dict]) -> Answer:
     )
 
 
-def answer_question(gemini: genai.Client, qdrant: QdrantClient, question: str) -> Answer:
+def answer_question(
+    gemini: genai.Client,
+    qdrant: QdrantClient,
+    question: str,
+    model: str = GENERATION_MODEL,
+) -> Answer:
     chunks = [payload for _, payload in search(gemini, qdrant, question, RETRIEVAL_LIMIT)]
-    return resolve_answer(generate(gemini, build_prompt(question, chunks)), chunks)
+    return resolve_answer(generate(gemini, build_prompt(question, chunks), model), chunks)
 
 
 def main() -> None:
