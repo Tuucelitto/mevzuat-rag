@@ -1,0 +1,110 @@
+{
+  "split": "dev",
+  "created_at": "2026-10-31T23:58:30+03:00",
+  "questions": 27,
+  "pieces": {
+    "whole": 137,
+    "split": 192
+  },
+  "split_settings": {
+    "threshold": 1500,
+    "target": 1200
+  },
+  "git": {
+    "commit": "40696dd",
+    "uncommitted_changes": false
+  },
+  "results": {
+    "dense_whole_articles": {
+      "recall_at_3": 0.981,
+      "recall_at_5": 0.981,
+      "recall_at_8": 1.0,
+      "mrr": 0.963,
+      "not_first": [
+        "p01",
+        "p09"
+      ]
+    },
+    "bm25_whole_articles": {
+      "recall_at_3": 0.648,
+      "recall_at_5": 0.778,
+      "recall_at_8": 0.778,
+      "mrr": 0.621,
+      "not_first": [
+        "q17",
+        "q18",
+        "q23",
+        "q24",
+        "q25",
+        "q27",
+        "q29",
+        "p01",
+        "p06",
+        "p07",
+        "p08",
+        "p09",
+        "p10"
+      ]
+    },
+    "hybrid_whole_articles": {
+      "recall_at_3": 0.815,
+      "recall_at_5": 0.852,
+      "recall_at_8": 0.926,
+      "mrr": 0.852,
+      "not_first": [
+        "q17",
+        "q29",
+        "p08",
+        "p09",
+        "p10"
+      ]
+    },
+    "dense_split_articles": {
+      "recall_at_3": 0.981,
+      "recall_at_5": 0.981,
+      "recall_at_8": 1.0,
+      "mrr": 0.926,
+      "not_first": [
+        "q29",
+        "p01",
+        "p07",
+        "p09"
+      ]
+    },
+    "bm25_split_articles": {
+      "recall_at_3": 0.685,
+      "recall_at_5": 0.796,
+      "recall_at_8": 0.815,
+      "mrr": 0.615,
+      "not_first": [
+        "q17",
+        "q18",
+        "q23",
+        "q24",
+        "q25",
+        "q27",
+        "q29",
+        "q30",
+        "q35",
+        "p06",
+        "p07",
+        "p08",
+        "p09",
+        "p10"
+      ]
+    },
+    "hybrid_split_articles": {
+      "recall_at_3": 0.815,
+      "recall_at_5": 0.889,
+      "recall_at_8": 0.926,
+      "mrr": 0.85,
+      "not_first": [
+        "q17",
+        "q29",
+        "p07",
+        "p09",
+        "p10"
+      ]
+    }
+  }
+}
