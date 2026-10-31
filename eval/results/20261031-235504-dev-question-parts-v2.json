@@ -1,0 +1,1019 @@
+{
+  "label": "question-parts-v2",
+  "split": "dev",
+  "created_at": "2026-10-31T23:55:04+03:00",
+  "config": {
+    "embedding_model": "gemini-embedding-2",
+    "generation_model": "gemini-3.5-flash-lite",
+    "retrieval_limit": 8
+  },
+  "git": {
+    "commit": "37bb181",
+    "uncommitted_changes": false
+  },
+  "summary": {
+    "questions": 33,
+    "answerable_questions": 27,
+    "unanswerable_questions": 6,
+    "recall_at_8": 1.0,
+    "mrr": 0.963,
+    "fact_accuracy": 0.926,
+    "citation_recall": 0.907,
+    "false_refusal_rate": 0.074,
+    "correct_refusal_rate": 1.0,
+    "fact_accuracy_by_category": {
+      "direct": 1.0,
+      "multi_article": 1.0,
+      "paraphrase": 1.0,
+      "realistic": 0.75,
+      "repealed": 1.0,
+      "scenario": 1.0
+    }
+  },
+  "records": [
+    {
+      "id": "q01",
+      "category": "direct",
+      "question": "Deneme süresi en çok ne kadar olabilir?",
+      "expected_answerable": true,
+      "expected_ids": [
+        "4857-15"
+      ],
+      "retrieved_ids": [
+        "4857-15",
+        "4857-17",
+        "4857-9",
+        "4857-53",
+        "4857-7",
+        "4857-63",
+        "4857-gecici-10",
+        "4857-gecici-8"
+      ],
+      "cited_ids": [
+        "4857-15"
+      ],
+      "system_answered": true,
+      "answer": "Deneme süresi en çok iki ay olabilir, ancak bu süre toplu iş sözleşmeleriyle dört aya kadar uzatılabilir.",
+      "unanswered_parts": "",
+      "manual_grade": "correct",
+      "manual_note": "",
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "citation_recall": 1.0,
+      "facts_correct": true
+    },
+    {
+      "id": "q03",
+      "category": "direct",
+      "question": "Fazla çalışma süresinin toplamı bir yılda en çok kaç saat olabilir?",
+      "expected_answerable": true,
+      "expected_ids": [
+        "4857-41"
+      ],
+      "retrieved_ids": [
+        "4857-41",
+        "4857-63",
+        "4857-42",
+        "4857-64",
+        "4857-69",
+        "4857-43",
+        "4857-66",
+        "4857-gecici-8"
+      ],
+      "cited_ids": [
+        "4857-41"
+      ],
+      "system_answered": true,
+      "answer": "Fazla çalışma süresinin toplamı bir yılda ikiyüzyetmiş saatten fazla olamaz.",
+      "unanswered_parts": "",
+      "manual_grade": "correct",
+      "manual_note": "",
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "citation_recall": 1.0,
+      "facts_correct": true
+    },
+    {
+      "id": "q04",
+      "category": "direct",
+      "question": "Yedi buçuk saatten uzun süren işlerde ara dinlenmesi ne kadardır?",
+      "expected_answerable": true,
+      "expected_ids": [
+        "4857-68"
+      ],
+      "retrieved_ids": [
+        "4857-68",
+        "4857-63",
+        "4857-104",
+        "4857-67",
+        "4857-76",
+        "4857-69",
+        "4857-42",
+        "4857-66"
+      ],
+      "cited_ids": [
+        "4857-68"
+      ],
+      "system_answered": true,
+      "answer": "Yedibuçuk saatten fazla süreli işlerde bir saat ara dinlenmesi verilir.",
+      "unanswered_parts": "",
+      "manual_grade": "correct",
+      "manual_note": "",
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "citation_recall": 1.0,
+      "facts_correct": true
+    },
+    {
+      "id": "q08",
+      "category": "direct",
+      "question": "Kıdem tazminatında zamanaşımı süresi kaç yıldır?",
+      "expected_answerable": true,
+      "expected_ids": [
+        "4857-ek-3"
+      ],
+      "retrieved_ids": [
+        "4857-ek-3",
+        "4857-gecici-8",
+        "4857-gecici-6",
+        "4857-112",
+        "4857-gecici-4",
+        "4857-59",
+        "4857-gecici-11",
+        "4857-17"
+      ],
+      "cited_ids": [
+        "4857-ek-3"
+      ],
+      "system_answered": true,
+      "answer": "İş sözleşmesinden kaynaklanmak kaydıyla kıdem tazminatının zamanaşımı süresi beş yıldır.",
+      "unanswered_parts": "",
+      "manual_grade": "correct",
+      "manual_note": "",
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "citation_recall": 1.0,
+      "facts_correct": true
+    },
+    {
+      "id": "q11",
+      "category": "direct",
+      "question": "İşçinin aylık ücretinin ne kadarı haczedilebilir?",
+      "expected_answerable": true,
+      "expected_ids": [
+        "4857-35"
+      ],
+      "retrieved_ids": [
+        "4857-35",
+        "4857-36",
+        "4857-38",
+        "4857-102",
+        "4857-62",
+        "4857-37",
+        "4857-34",
+        "4857-32"
+      ],
+      "cited_ids": [
+        "4857-35"
+      ],
+      "system_answered": true,
+      "answer": "İşçilerin aylık ücretlerinin dörtte birinden fazlası haczedilemez.",
+      "unanswered_parts": "",
+      "manual_grade": "correct",
+      "manual_note": "",
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "citation_recall": 1.0,
+      "facts_correct": true
+    },
+    {
+      "id": "q12",
+      "category": "direct",
+      "question": "Asgari ücret en geç ne kadar sürede bir belirlenir?",
+      "expected_answerable": true,
+      "expected_ids": [
+        "4857-39"
+      ],
+      "retrieved_ids": [
+        "4857-39",
+        "4857-gecici-3",
+        "4857-32",
+        "4857-53",
+        "4857-69",
+        "4857-17",
+        "4857-63",
+        "4857-68"
+      ],
+      "cited_ids": [
+        "4857-39"
+      ],
+      "system_answered": true,
+      "answer": "İş sözleşmesi ile çalışan ve bu Kanunun kapsamında olan veya olmayan her türlü işçinin ekonomik ve sosyal durumlarının düzenlenmesi için asgari ücretlerin asgari sınırları en geç iki yılda bir belirlenir.",
+      "unanswered_parts": "",
+      "manual_grade": "correct",
+      "manual_note": "",
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "citation_recall": 1.0,
+      "facts_correct": true
+    },
+    {
+      "id": "q13",
+      "category": "direct",
+      "question": "Toplu işçi çıkarma en az kaç gün önceden bildirilmelidir?",
+      "expected_answerable": true,
+      "expected_ids": [
+        "4857-29"
+      ],
+      "retrieved_ids": [
+        "4857-29",
+        "4857-100",
+        "4857-17",
+        "4857-18",
+        "4857-27",
+        "4857-19",
+        "4857-3",
+        "4857-15"
+      ],
+      "cited_ids": [
+        "4857-29"
+      ],
+      "system_answered": true,
+      "answer": "İşveren, toplu işçi çıkarmak istediğinde bunu en az otuz gün önceden bir yazı ile işyeri sendika temsilcilerine, ilgili bölge müdürlüğüne ve Türkiye İş Kurumuna bildirmek zorundadır.",
+      "unanswered_parts": "",
+      "manual_grade": "correct",
+      "manual_note": "",
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "citation_recall": 1.0,
+      "facts_correct": true
+    },
+    {
+      "id": "q17",
+      "category": "paraphrase",
+      "question": "Evden çalışma anlaşması yazılı olmak zorunda mı?",
+      "expected_answerable": true,
+      "expected_ids": [
+        "4857-14"
+      ],
+      "retrieved_ids": [
+        "4857-14",
+        "4857-8",
+        "4857-22",
+        "4857-16",
+        "4857-109",
+        "4857-11",
+        "4857-13",
+        "4857-19"
+      ],
+      "cited_ids": [
+        "4857-14"
+      ],
+      "system_answered": true,
+      "answer": "Uzaktan çalışma, işveren tarafından oluşturulan iş organizasyonu kapsamında iş görme edimini evinde ya da teknolojik iletişim araçları ile işyeri dışında yerine getirmesi esasına dayalı ve yazılı olarak kurulan iş ilişkisidir. Dolayısıyla evden çalışma anlaşmasının yazılı olarak kurulması zorunludur.",
+      "unanswered_parts": "",
+      "manual_grade": "correct",
+      "manual_note": "",
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "citation_recall": 1.0,
+      "facts_correct": true
+    },
+    {
+      "id": "q18",
+      "category": "paraphrase",
+      "question": "Babam vefat etti, işyerinden kaç gün izin alabilirim?",
+      "expected_answerable": true,
+      "expected_ids": [
+        "4857-ek-2"
+      ],
+      "retrieved_ids": [
+        "4857-ek-2",
+        "4857-74",
+        "4857-27",
+        "4857-31",
+        "4857-64",
+        "4857-55",
+        "4857-40",
+        "4857-56"
+      ],
+      "cited_ids": [
+        "4857-ek-2"
+      ],
+      "system_answered": true,
+      "answer": "Kanuna göre, babanızın ölümü hâlinde üç gün ücretli izin alabilirsiniz.",
+      "unanswered_parts": "",
+      "manual_grade": "correct",
+      "manual_note": "",
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "citation_recall": 1.0,
+      "facts_correct": true
+    },
+    {
+      "id": "q21",
+      "category": "paraphrase",
+      "question": "Patronun sosyal yardım olarak sağladığı serviste geçen süre mesaiden sayılır mı?",
+      "expected_answerable": true,
+      "expected_ids": [
+        "4857-66"
+      ],
+      "retrieved_ids": [
+        "4857-66",
+        "4857-63",
+        "4857-68",
+        "4857-41",
+        "4857-56",
+        "4857-51",
+        "4857-2",
+        "4857-67"
+      ],
+      "cited_ids": [
+        "4857-66"
+      ],
+      "system_answered": true,
+      "answer": "İşin niteliğinden doğmayıp da işveren tarafından sırf sosyal yardım amacıyla işyerine götürülüp getirilme esnasında araçlarda geçen süre çalışma süresinden (mesaiden) sayılmaz.",
+      "unanswered_parts": "",
+      "manual_grade": "correct",
+      "manual_note": "",
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "citation_recall": 1.0,
+      "facts_correct": true
+    },
+    {
+      "id": "q23",
+      "category": "paraphrase",
+      "question": "İşveren bana maaş bordrosu vermek zorunda mı?",
+      "expected_answerable": true,
+      "expected_ids": [
+        "4857-37"
+      ],
+      "retrieved_ids": [
+        "4857-37",
+        "4857-52",
+        "4857-51",
+        "4857-8",
+        "4857-28",
+        "4857-102",
+        "4857-75",
+        "4857-32"
+      ],
+      "cited_ids": [
+        "4857-37"
+      ],
+      "system_answered": true,
+      "answer": "İşveren, işyerinde veya bankaya yaptığı ödemelerde işçiye ücret hesabını gösterir imzalı veya işyerinin özel işaretini taşıyan bir pusula (maaş bordrosu) vermek zorundadır.",
+      "unanswered_parts": "",
+      "manual_grade": "correct",
+      "manual_note": "",
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "citation_recall": 1.0,
+      "facts_correct": true
+    },
+    {
+      "id": "q24",
+      "category": "paraphrase",
+      "question": "Patronum yıllık iznimi parça parça kullandırabilir mi?",
+      "expected_answerable": true,
+      "expected_ids": [
+        "4857-56"
+      ],
+      "retrieved_ids": [
+        "4857-56",
+        "4857-103",
+        "4857-54",
+        "4857-53",
+        "4857-57",
+        "4857-60",
+        "4857-58",
+        "4857-55"
+      ],
+      "cited_ids": [
+        "4857-56"
+      ],
+      "system_answered": true,
+      "answer": "Yıllık ücretli izin işveren tarafından bölünemez ve 53 üncü maddede gösterilen süreler içinde sürekli bir şekilde verilmesi zorunludur. Ancak, tarafların anlaşması ile bir bölümü on günden aşağı olmamak üzere bölümler hâlinde kullanılabilir.",
+      "unanswered_parts": "",
+      "manual_grade": "correct",
+      "manual_note": "",
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "citation_recall": 1.0,
+      "facts_correct": true
+    },
+    {
+      "id": "q25",
+      "category": "scenario",
+      "question": "On dört yıldır çalışan 35 yaşındaki işçinin yıllık izni en az kaç gündür?",
+      "expected_answerable": true,
+      "expected_ids": [
+        "4857-53"
+      ],
+      "retrieved_ids": [
+        "4857-53",
+        "4857-56",
+        "4857-54",
+        "4857-55",
+        "4857-57",
+        "4857-60",
+        "4857-59",
+        "4857-71"
+      ],
+      "cited_ids": [
+        "4857-53"
+      ],
+      "system_answered": true,
+      "answer": "İşyerinde hizmet süresi beş yıldan fazla ve onbeş yıldan az olan işçilere verilecek yıllık ücretli izin süresi yirmi günden az olamaz. Buna göre, 14 yıldır çalışan 35 yaşındaki işçinin yıllık izni en az 20 gündür.",
+      "unanswered_parts": "",
+      "manual_grade": "correct",
+      "manual_note": "",
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "citation_recall": 1.0,
+      "facts_correct": true
+    },
+    {
+      "id": "q27",
+      "category": "scenario",
+      "question": "İki yıldır çalışan 52 yaşındaki işçinin yıllık izni en az kaç gündür?",
+      "expected_answerable": true,
+      "expected_ids": [
+        "4857-53"
+      ],
+      "retrieved_ids": [
+        "4857-53",
+        "4857-56",
+        "4857-54",
+        "4857-55",
+        "4857-57",
+        "4857-58",
+        "4857-60",
+        "4857-103"
+      ],
+      "cited_ids": [
+        "4857-53"
+      ],
+      "system_answered": true,
+      "answer": "İşyerinde hizmet süresi bir yıldan beş yıla kadar olan işçilerin yıllık ücretli izin süresi ondört günden az olamaz. Ancak elli ve daha yukarı yaştaki işçilere verilecek yıllık ücretli izin süresi yirmi günden az olamaz. Bu nedenle 52 yaşındaki ve iki yıldır çalışan işçinin yıllık izni en az 20 gündür.",
+      "unanswered_parts": "",
+      "manual_grade": "correct",
+      "manual_note": "",
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "citation_recall": 1.0,
+      "facts_correct": true
+    },
+    {
+      "id": "q29",
+      "category": "scenario",
+      "question": "Yirmi işçinin çalıştığı işyerinde bir yıllık işçi iş güvencesi hükümlerinden yararlanabilir mi?",
+      "expected_answerable": true,
+      "expected_ids": [
+        "4857-18"
+      ],
+      "retrieved_ids": [
+        "4857-18",
+        "4857-20",
+        "4857-21",
+        "4857-53",
+        "4857-12",
+        "4857-17",
+        "4857-54",
+        "4857-31"
+      ],
+      "cited_ids": [
+        "4857-18"
+      ],
+      "system_answered": true,
+      "answer": "Yirmi işçinin çalıştığı işyerinde en az altı aylık kıdemi olan işçi, iş güvencesi hükümlerinden (18, 19, 20 ve 21. maddelerden) yararlanamaz; çünkü Madde 18 uyarınca bu hükümlerin uygulanabilmesi için işyerinde otuz veya daha fazla işçi çalıştırılması zorunludur.",
+      "unanswered_parts": "",
+      "manual_grade": "correct",
+      "manual_note": "",
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "citation_recall": 1.0,
+      "facts_correct": true
+    },
+    {
+      "id": "q30",
+      "category": "scenario",
+      "question": "Yer altı işinde üç yıldır çalışan 30 yaşındaki işçinin yıllık izni en az kaç gündür?",
+      "expected_answerable": true,
+      "expected_ids": [
+        "4857-53"
+      ],
+      "retrieved_ids": [
+        "4857-53",
+        "4857-56",
+        "4857-57",
+        "4857-55",
+        "4857-54",
+        "4857-60",
+        "4857-63",
+        "4857-103"
+      ],
+      "cited_ids": [
+        "4857-53"
+      ],
+      "system_answered": true,
+      "answer": "Yıllık ücretli izin süresi, hizmet süresi bir yıldan beş yıla kadar olanlar için ondört günden az olamaz. Yer altı işlerinde çalışan işçilerin yıllık ücretli izin süreleri dörder gün arttırılarak uygulanır. Buna göre, yer altı işinde üç yıldır çalışan 30 yaşındaki işçinin yıllık izni en az 18 gündür.",
+      "unanswered_parts": "",
+      "manual_grade": "correct",
+      "manual_note": "",
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "citation_recall": 1.0,
+      "facts_correct": true
+    },
+    {
+      "id": "q34",
+      "category": "multi_article",
+      "question": "Mahkeme feshi geçersiz saydı. İşçi işverene kaç işgünü içinde başvurmalı, işveren işe başlatmazsa tazminat ne kadar olur?",
+      "expected_answerable": true,
+      "expected_ids": [
+        "4857-21"
+      ],
+      "retrieved_ids": [
+        "4857-21",
+        "4857-20",
+        "4857-17",
+        "4857-18",
+        "4857-31",
+        "4857-ek-3",
+        "4857-19",
+        "4857-25"
+      ],
+      "cited_ids": [
+        "4857-21"
+      ],
+      "system_answered": true,
+      "answer": "İşçi kesinleşen mahkeme kararının tebliğinden itibaren on işgünü içinde işe başlamak için işverene başvuruda bulunmak zorundadır. İşçiyi başvurusu üzerine işveren bir ay içinde işe başlatmaz ise, işçiye en az dört aylık ve en çok sekiz aylık ücreti tutarında tazminat ödemekle yükümlü olur.",
+      "unanswered_parts": "",
+      "manual_grade": "correct",
+      "manual_note": "",
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "citation_recall": 1.0,
+      "facts_correct": true
+    },
+    {
+      "id": "q35",
+      "category": "multi_article",
+      "question": "Doğum izninde geçen günler yıllık izin hesabına dahil edilir mi?",
+      "expected_answerable": true,
+      "expected_ids": [
+        "4857-55"
+      ],
+      "retrieved_ids": [
+        "4857-55",
+        "4857-74",
+        "4857-54",
+        "4857-56",
+        "4857-57",
+        "4857-ek-2",
+        "4857-53",
+        "4857-60"
+      ],
+      "cited_ids": [
+        "4857-55",
+        "4857-74"
+      ],
+      "system_answered": true,
+      "answer": "Kadın işçilerin 74 üncü madde gereğince doğumdan önce ve sonra çalıştırılmadıkları günler yıllık ücretli izin hakkının hesabında çalışılmış gibi sayılır.",
+      "unanswered_parts": "",
+      "manual_grade": "correct",
+      "manual_note": "",
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "citation_recall": 1.0,
+      "facts_correct": true
+    },
+    {
+      "id": "q37",
+      "category": "repealed",
+      "question": "On sekiz yaşından küçük işçiler için rapor maddesi ne diyor?",
+      "expected_answerable": true,
+      "expected_ids": [
+        "4857-87"
+      ],
+      "retrieved_ids": [
+        "4857-87",
+        "4857-73",
+        "4857-86",
+        "4857-18",
+        "4857-71",
+        "4857-72",
+        "4857-104",
+        "4857-85"
+      ],
+      "cited_ids": [
+        "4857-87"
+      ],
+      "system_answered": true,
+      "answer": "On sekiz yaşından küçük işçiler için rapor düzenleyen 4857 sayılı İş Kanununun 87 nci maddesi mülga (yürürlükten kaldırılmış) olduğu için bu maddede herhangi bir kural kalmamıştır.",
+      "unanswered_parts": "",
+      "manual_grade": "correct",
+      "manual_note": "",
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "citation_recall": 1.0,
+      "facts_correct": true
+    },
+    {
+      "id": "u01",
+      "category": "unanswerable",
+      "question": "Kıdem tazminatı tavanı şu an ne kadar?",
+      "expected_answerable": false,
+      "expected_ids": [],
+      "retrieved_ids": [
+        "4857-gecici-6",
+        "4857-112",
+        "4857-ek-3",
+        "4857-gecici-4",
+        "4857-gecici-11",
+        "4857-gecici-8",
+        "4857-gecici-12",
+        "4857-gecici-5"
+      ],
+      "cited_ids": [],
+      "system_answered": false,
+      "answer": "Bilmiyorum. Bu sorunun cevabını eldeki mevzuat metninde bulamadım.",
+      "unanswered_parts": "",
+      "manual_grade": "correct",
+      "manual_note": "",
+      "correctly_refused": true
+    },
+    {
+      "id": "u03",
+      "category": "unanswerable",
+      "question": "2026 yılında asgari ücret kaç liradır?",
+      "expected_answerable": false,
+      "expected_ids": [],
+      "retrieved_ids": [
+        "4857-39",
+        "4857-gecici-3",
+        "4857-57",
+        "4857-102",
+        "4857-32",
+        "4857-86",
+        "4857-34",
+        "4857-26"
+      ],
+      "cited_ids": [],
+      "system_answered": false,
+      "answer": "Bilmiyorum. Bu sorunun cevabını eldeki mevzuat metninde bulamadım.",
+      "unanswered_parts": "",
+      "manual_grade": "correct",
+      "manual_note": "",
+      "correctly_refused": true
+    },
+    {
+      "id": "u05",
+      "category": "unanswerable",
+      "question": "İşsizlik maaşı ne kadar süre ödenir?",
+      "expected_answerable": false,
+      "expected_ids": [],
+      "retrieved_ids": [
+        "4857-17",
+        "4857-48",
+        "4857-53",
+        "4857-32",
+        "4857-18",
+        "4857-40",
+        "4857-59",
+        "4857-15"
+      ],
+      "cited_ids": [],
+      "system_answered": false,
+      "answer": "Bilmiyorum. Bu sorunun cevabını eldeki mevzuat metninde bulamadım.",
+      "unanswered_parts": "",
+      "manual_grade": "correct",
+      "manual_note": "",
+      "correctly_refused": true
+    },
+    {
+      "id": "u08",
+      "category": "unanswerable",
+      "question": "Türkiye'nin başkenti neresidir?",
+      "expected_answerable": false,
+      "expected_ids": [],
+      "retrieved_ids": [
+        "4857-91",
+        "4857-39",
+        "4857-63",
+        "4857-69",
+        "4857-108",
+        "4857-50",
+        "4857-57",
+        "4857-51"
+      ],
+      "cited_ids": [],
+      "system_answered": false,
+      "answer": "Bilmiyorum. Bu sorunun cevabını eldeki mevzuat metninde bulamadım.",
+      "unanswered_parts": "",
+      "manual_grade": "correct",
+      "manual_note": "",
+      "correctly_refused": true
+    },
+    {
+      "id": "p01",
+      "category": "realistic",
+      "question": "Patron beni kovdu, son iki ayın maaşını da vermedi. Ne yapmam lazım, nereye başvururum?",
+      "expected_answerable": true,
+      "expected_ids": [
+        "4857-20",
+        "4857-34"
+      ],
+      "retrieved_ids": [
+        "4857-21",
+        "4857-20",
+        "4857-25",
+        "4857-27",
+        "4857-36",
+        "4857-28",
+        "4857-102",
+        "4857-34"
+      ],
+      "cited_ids": [
+        "4857-20"
+      ],
+      "system_answered": true,
+      "answer": "İş sözleşmesi feshedilen işçi, fesih bildiriminde sebep gösterilmediği veya gösterilen sebebin geçerli bir sebep olmadığı iddiası ile fesih bildiriminin tebliği tarihinden itibaren bir ay içinde işe iade talebiyle, İş Mahkemeleri Kanunu hükümleri uyarınca arabulucuya başvurmak zorundadır.",
+      "unanswered_parts": "",
+      "manual_grade": "incomplete",
+      "manual_note": "Ignores the unpaid wages part without listing it as unanswered.",
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 0.5,
+      "citation_recall": 0.5,
+      "facts_correct": true
+    },
+    {
+      "id": "p02",
+      "category": "realistic",
+      "question": "4 yıldır aynı yerde çalışıyorum, istifa etsem tazminat alabilir miyim?",
+      "expected_answerable": false,
+      "expected_ids": [],
+      "retrieved_ids": [
+        "4857-ek-3",
+        "4857-17",
+        "4857-31",
+        "4857-112",
+        "4857-gecici-4",
+        "4857-18",
+        "4857-21",
+        "4857-24"
+      ],
+      "cited_ids": [],
+      "system_answered": false,
+      "answer": "Bilmiyorum. Bu sorunun cevabını eldeki mevzuat metninde bulamadım.",
+      "unanswered_parts": "",
+      "manual_grade": "correct",
+      "manual_note": "",
+      "correctly_refused": true
+    },
+    {
+      "id": "p03",
+      "category": "realistic",
+      "question": "Her gün akşam 8'e kadar kalıyoruz ama fazla mesai ödenmiyor. Bu normal mi?",
+      "expected_answerable": true,
+      "expected_ids": [
+        "4857-41"
+      ],
+      "retrieved_ids": [
+        "4857-41",
+        "4857-69",
+        "4857-63",
+        "4857-42",
+        "4857-68",
+        "4857-66",
+        "4857-102",
+        "4857-76"
+      ],
+      "cited_ids": [
+        "4857-41",
+        "4857-63",
+        "4857-102"
+      ],
+      "system_answered": true,
+      "answer": "Genel bakımdan çalışma süresi haftada en çok kırkbeş saattir. Haftalık kırkbeş saati aşan çalışmalar fazla çalışma sayılır ve her bir saat fazla çalışma için verilecek ücret normal çalışma ücretinin saat başına düşen miktarının yüzde elli yükseltilmesi suretiyle ödenir. İş Kanunu'nun 102 nci maddesine göre, 41 inci maddede belirtilen fazla çalışmalara ilişkin ücreti ödemeyen işverene idari para cezası verilir. Bu durumda akşam saat 8'e kadar kalmanız nedeniyle haftalık kırkbeş saatin aşılıp aşılmadığına ve fazla çalışma ücretinin ödenip ödenmediğine bağlı olarak işverenin Kanuna aykırı hareket edip etmediği belirlenir.",
+      "unanswered_parts": "",
+      "manual_grade": "correct",
+      "manual_note": "",
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "citation_recall": 1.0,
+      "facts_correct": true
+    },
+    {
+      "id": "p04",
+      "category": "realistic",
+      "question": "İşe gireli 1.5 ay oldu, deneme süresindeyim dediler ve hiçbir sebep söylemeden çıkardılar. Hakkım var mı?",
+      "expected_answerable": true,
+      "expected_ids": [
+        "4857-15"
+      ],
+      "retrieved_ids": [
+        "4857-15",
+        "4857-18",
+        "4857-17",
+        "4857-21",
+        "4857-19",
+        "4857-25",
+        "4857-5",
+        "4857-31"
+      ],
+      "cited_ids": [
+        "4857-15"
+      ],
+      "system_answered": true,
+      "answer": "Taraflar arasında deneme süresi kararlaştırıldığında, bu sürenin en çok iki ay olabileceği kanunda belirtilmiştir. Sizin durumunuzda işe gireli 1.5 ay olduğu ve deneme süresinde bulunduğunuz belirtildiğinden, bu süre iki aylık yasal azami deneme süresi sınırı içindedir. Kanuna göre deneme süresi içinde taraflar iş sözleşmesini bildirim süresine gerek olmaksızın ve tazminatsız feshedebilirler; ancak çalıştığınız günler için ücret ve diğer haklarınız saklıdır.",
+      "unanswered_parts": "",
+      "manual_grade": "correct",
+      "manual_note": "",
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "citation_recall": 1.0,
+      "facts_correct": true
+    },
+    {
+      "id": "p05",
+      "category": "realistic",
+      "question": "Sigortamı asgari ücretten gösteriyorlar ama elden daha fazla para veriyorlar. Sonra bir sorun çıkarsa ne olur?",
+      "expected_answerable": false,
+      "expected_ids": [],
+      "retrieved_ids": [
+        "4857-102",
+        "4857-32",
+        "4857-39",
+        "4857-5",
+        "4857-52",
+        "4857-51",
+        "4857-17",
+        "4857-99"
+      ],
+      "cited_ids": [],
+      "system_answered": false,
+      "answer": "Bilmiyorum. Bu sorunun cevabını eldeki mevzuat metninde bulamadım.",
+      "unanswered_parts": "",
+      "manual_grade": "correct",
+      "manual_note": "",
+      "correctly_refused": true
+    },
+    {
+      "id": "p06",
+      "category": "realistic",
+      "question": "Yıllık iznimi kullanmama izin vermiyorlar, işten ayrılınca bu izinlerin parası verilir mi?",
+      "expected_answerable": true,
+      "expected_ids": [
+        "4857-59"
+      ],
+      "retrieved_ids": [
+        "4857-59",
+        "4857-57",
+        "4857-103",
+        "4857-53",
+        "4857-56",
+        "4857-58",
+        "4857-54",
+        "4857-55"
+      ],
+      "cited_ids": [
+        "4857-59"
+      ],
+      "system_answered": true,
+      "answer": "İş sözleşmesinin herhangi bir nedenle sona ermesi halinde işçinin hak kazanıp da kullanmadığı yıllık izin sürelerine ait ücreti, sözleşmenin sona erdiği tarihteki ücreti üzerinden kendisine veya hak sahiplerine ödenir.",
+      "unanswered_parts": "",
+      "manual_grade": "correct",
+      "manual_note": "",
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "citation_recall": 1.0,
+      "facts_correct": true
+    },
+    {
+      "id": "p07",
+      "category": "realistic",
+      "question": "Hamile olduğumu söyledikten sonra müdürüm sürekli bahane bulup beni işten çıkarmaya çalışıyor. Ne yapabilirim?",
+      "expected_answerable": true,
+      "expected_ids": [
+        "4857-5",
+        "4857-18"
+      ],
+      "retrieved_ids": [
+        "4857-18",
+        "4857-5",
+        "4857-25",
+        "4857-24",
+        "4857-74",
+        "4857-17",
+        "4857-19",
+        "4857-21"
+      ],
+      "cited_ids": [
+        "4857-18",
+        "4857-5"
+      ],
+      "system_answered": true,
+      "answer": "Hamilelik, iş sözleşmesinin feshinde geçerli bir sebep oluşturmaz. İşveren, gebelik nedeniyle işçiye iş sözleşmesinin uygulanmasında ve sona ermesinde doğrudan veya dolaylı farklı işlem yapamaz; aksi takdirde işçi dört aya kadar ücreti tutarında uygun bir tazminattan başka yoksun bırakıldığı haklarını da talep edebilir. İşverenin bu hükümlere aykırı davrandığını işçi ispat etmekle yükümlüdür, ancak işçi bir ihlalin varlığı ihtimalini güçlü bir biçimde gösteren bir durumu ortaya koyduğunda, işveren böyle bir ihlalin mevcut olmadığını ispat etmekle yükümlü olur.",
+      "unanswered_parts": "",
+      "manual_grade": "incomplete",
+      "manual_note": "Omits the condition of 30 workers and six months of service.",
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "citation_recall": 1.0,
+      "facts_correct": true
+    },
+    {
+      "id": "p08",
+      "category": "realistic",
+      "question": "Patron bana bağırıyor, herkesin önünde aşağılıyor, işi bıraksam tazminatımı alabilir miyim?",
+      "expected_answerable": true,
+      "expected_ids": [
+        "4857-24"
+      ],
+      "retrieved_ids": [
+        "4857-24",
+        "4857-25",
+        "4857-17",
+        "4857-ek-3",
+        "4857-18",
+        "4857-21",
+        "4857-31",
+        "4857-27"
+      ],
+      "cited_ids": [],
+      "system_answered": false,
+      "answer": "Bilmiyorum. Bu sorunun cevabını eldeki mevzuat metninde bulamadım.",
+      "unanswered_parts": "",
+      "manual_grade": "incomplete",
+      "manual_note": "False refusal: Article 24 supports the termination part.",
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "citation_recall": 0.0,
+      "facts_correct": false
+    },
+    {
+      "id": "p09",
+      "category": "realistic",
+      "question": "Doktordan 10 gün rapor aldım, işveren “raporlu olduğun günlerin maaşını kesiyorum” dedi. Kesebilir mi?",
+      "expected_answerable": true,
+      "expected_ids": [
+        "4857-48"
+      ],
+      "retrieved_ids": [
+        "4857-38",
+        "4857-48",
+        "4857-ek-2",
+        "4857-25",
+        "4857-37",
+        "4857-102",
+        "4857-gecici-10",
+        "4857-18"
+      ],
+      "cited_ids": [],
+      "system_answered": false,
+      "answer": "Bilmiyorum. Bu sorunun cevabını eldeki mevzuat metninde bulamadım.",
+      "unanswered_parts": "",
+      "manual_grade": "incomplete",
+      "manual_note": "Refuses; arguably defensible because Article 48 is only indirect.",
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 0.5,
+      "citation_recall": 0.0,
+      "facts_correct": false
+    },
+    {
+      "id": "p10",
+      "category": "realistic",
+      "question": "Bana haber vermeden ertesi gün gelme dediler. İhbar diye bir şey vardı galiba, o ne oluyor?",
+      "expected_answerable": true,
+      "expected_ids": [
+        "4857-17"
+      ],
+      "retrieved_ids": [
+        "4857-17",
+        "4857-19",
+        "4857-27",
+        "4857-29",
+        "4857-23",
+        "4857-18",
+        "4857-31",
+        "4857-21"
+      ],
+      "cited_ids": [
+        "4857-17"
+      ],
+      "system_answered": true,
+      "answer": "İş sözleşmelerinin feshinden önce durumun karşı tarafa bildirilmesi gerekir. İş sözleşmesi, işi altı aydan az sürmüş işçi için iki hafta, altı aydan bir buçuk yıla kadar sürmüş işçi için dört hafta, bir buçuk yıldan üç yıla kadar sürmüş işçi için altı hafta ve üç yıldan fazla sürmüş işçi için sekiz hafta sonra feshedilmiş sayılır. Bu süreler asgari olup sözleşmelerle artırılabilir. Bildirim şartına uymayan taraf, bildirim süresine ilişkin ücret tutarında tazminat ödemek zorundadır. İşveren bildirim süresine ait ücreti peşin vermek suretiyle iş sözleşmesini feshedebilir.",
+      "unanswered_parts": "",
+      "manual_grade": "correct",
+      "manual_note": "",
+      "recall_at_k": 1.0,
+      "reciprocal_rank": 1.0,
+      "citation_recall": 1.0,
+      "facts_correct": true
+    }
+  ],
+  "manual_review": "Graded by Claude against the law text, not by a lawyer."
+}
