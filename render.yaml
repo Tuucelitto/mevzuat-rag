@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: mevzuat-asistani-api
+    runtime: python
+    plan: free
+    # The index is built here so it ships with the deployment and survives sleep.
+    buildCommand: >-
+      pip install -r requirements.txt &&
+      python -m mevzuat_rag.chunking &&
+      python -m mevzuat_rag.index
+    startCommand: uvicorn mevzuat_rag.api:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13.0
+      - key: CLIENT_IP_HEADER
+        value: CF-Connecting-IP
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: ALLOWED_ORIGINS
+        sync: false

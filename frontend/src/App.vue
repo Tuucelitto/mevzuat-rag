@@ -109,7 +109,10 @@ if (savedTheme) document.documentElement.dataset.theme = savedTheme;
     <div class="live" aria-live="polite">
       <section v-if="loading" class="card status">
         <p class="status-title">Maddeler taranıyor, cevap hazırlanıyor…</p>
-        <p class="status-detail">Bu işlem 30 saniye sürebilir.</p>
+        <p class="status-detail">
+          Bu işlem 30 saniye sürebilir. Sunucu uykudan uyanıyorsa ilk soruda bekleme süresi 1
+          dakikayı bulabilir.
+        </p>
       </section>
 
       <section v-else-if="errorMessage" class="message" role="alert">

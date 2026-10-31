@@ -5,6 +5,7 @@ import pytest
 from fastapi.testclient import TestClient
 from google.genai import errors
 
+from mevzuat_rag import api
 from mevzuat_rag.answer import UNKNOWN_ANSWER, Answer
 from mevzuat_rag.api import (
     DAY,
@@ -143,6 +144,31 @@ def test_rejected_question_does_not_reach_gemini(client: TestClient) -> None:
     for _ in range(6):
         client.post("/api/ask", json={"question": "soru"})
     assert len(calls) == 5
+
+
+def test_limit_uses_configured_header_to_separate_visitors(
+    client: TestClient, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.setattr(api, "CLIENT_IP_HEADER", "CF-Connecting-IP")
+
+    def ask_as(address: str) -> int:
+        headers = {"CF-Connecting-IP": address}
+        return client.post("/api/ask", json={"question": "soru"}, headers=headers).status_code
+
+    assert [ask_as("203.0.113.1") for _ in range(6)] == [200] * 5 + [429]
+    assert ask_as("203.0.113.2") == 200
+
+
+def test_limit_ignores_client_ip_header_unless_configured(client: TestClient) -> None:
+    codes = [
+        client.post(
+            "/api/ask",
+            json={"question": "soru"},
+            headers={"CF-Connecting-IP": f"203.0.113.{number}"},
+        ).status_code
+        for number in range(6)
+    ]
+    assert codes == [200] * 5 + [429]
 
 
 def test_limiter_allows_visitor_again_after_minute(clock: FakeClock) -> None:

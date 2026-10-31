@@ -28,6 +28,9 @@ TOTAL_DAILY_LIMIT = 400
 
 load_dotenv()
 ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173").split(",")
+# Behind a proxy every request seems to come from the proxy. Set this only to a
+# header the proxy overwrites, because visitors can send any header they like.
+CLIENT_IP_HEADER = os.getenv("CLIENT_IP_HEADER", "")
 
 Answerer = Callable[[str], Answer]
 
@@ -114,6 +117,12 @@ def get_answerer(request: Request) -> Answerer:
     return answer
 
 
+def visitor_id(request: Request) -> str:
+    if CLIENT_IP_HEADER and (address := request.headers.get(CLIENT_IP_HEADER)):
+        return address
+    return request.client.host if request.client else "unknown"
+
+
 def to_sources(result: Answer) -> list[Source]:
     return [
         Source(citation=citation, url=SOURCE_URLS[chunk_id.split("-")[0]])
@@ -135,8 +144,7 @@ def ask(
     answerer: Annotated[Answerer, Depends(get_answerer)],
     limiter: Annotated[RateLimiter, Depends(get_rate_limiter)],
 ) -> AskResponse:
-    visitor = request.client.host if request.client else "unknown"
-    if not limiter.allow(visitor):
+    if not limiter.allow(visitor_id(request)):
         raise HTTPException(429, "Çok fazla soru gönderildi. Lütfen daha sonra tekrar deneyin.")
 
     try:
