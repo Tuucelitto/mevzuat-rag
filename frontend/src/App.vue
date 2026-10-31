@@ -110,8 +110,7 @@ if (savedTheme) document.documentElement.dataset.theme = savedTheme;
       <section v-if="loading" class="card status">
         <p class="status-title">Maddeler taranıyor, cevap hazırlanıyor…</p>
         <p class="status-detail">
-          Bu işlem 30 saniye sürebilir. Sunucu uykudan uyanıyorsa ilk soruda bekleme süresi 1
-          dakikayı bulabilir.
+          Bu işlem 30 saniye sürebilir. İlk soruda bekleme süresi 1 dakikayı bulabilir.
         </p>
       </section>
 
