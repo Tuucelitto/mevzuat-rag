@@ -6,6 +6,10 @@ A RAG system that answers Turkish labour-law questions in Turkish, cites the art
 
 ## Demo
 
+**Live:** [mevzuat-asistani.netlify.app](https://mevzuat-asistani.netlify.app)
+
+The API runs on a free server that sleeps when idle, so the first question can take about a minute.
+
 ![Mevzuat Asistanı answering a question about unused annual leave, citing Article 59 of Law No. 4857](docs/demo.jpg)
 
 ## Results
