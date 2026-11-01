@@ -38,7 +38,13 @@ def call_with_retries[T](request: Callable[[], T]) -> T:
         try:
             return request()
         except errors.APIError as error:
-            if error.code not in RETRYABLE_STATUS_CODES or attempt == MAX_ATTEMPTS:
+            # A daily quota resets hours later, so waiting seconds cannot help.
+            daily_quota_used = "PerDay" in str(error)
+            if (
+                daily_quota_used
+                or error.code not in RETRYABLE_STATUS_CODES
+                or attempt == MAX_ATTEMPTS
+            ):
                 raise
             time.sleep(2**attempt)
     raise RuntimeError("Gemini retries exhausted")
