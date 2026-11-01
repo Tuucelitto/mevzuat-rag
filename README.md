@@ -140,6 +140,7 @@ mevzuat-rag/
 
 ## What I Learned
 
+- How RAG (retrieval-augmented generation) works: instead of relying on what a language model remembers, the system converts documents and questions into embeddings, retrieves the closest passages from a vector store, and asks the model to answer only from those passages, which makes its answers traceable to their sources.
 - Measuring with realistic questions changes the picture: fact accuracy was 1.0 on questions written from the law text but 0.5 on the first set of everyday questions.
 - Automatic checks can pass a wrong answer, so model output also needs to be read by hand.
 - Keeping a separate test split shows how much of a development score comes from tuning.
